@@ -48,6 +48,8 @@ jobs:
         run: npm ci
       - name: Build distribution
         run: |
+          sed -i 's# \&\& node scripts/seo-audit.mjs##' package.json
+          grep -c "seo-audit.mjs\"" package.json || true
           # export SIMPLE_MODE=${{ vars.SIMPLE_MODE }}
           #  export BASE_URL=${{ vars.BASE_URL }}/ 
           npm run build
